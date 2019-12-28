@@ -21,6 +21,7 @@ app.use( (req, res, next) => {
 
 app.get('/api/posts', (req, res) => {
   res.json(getPosts());
+  console.log(req)
 });
 
 app.post('/api/posts', bodyParser.json(), (req, res) => {  
