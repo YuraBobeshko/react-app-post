@@ -7,6 +7,7 @@ function Main() {
 
   useEffect(() => {
     refreshPost()
+    setInterval(() => refreshPost(), 1000);
   }, []);
 
   const refreshPost = async () => {

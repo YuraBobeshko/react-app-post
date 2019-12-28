@@ -3,12 +3,12 @@ const uuid = require('uuid/v1')
 
 let listPost = [
   {
-    id: '1',
+    id: 'a9a29e30-292f-11ea-b9e5-bfff89ce3ff9',
     title: 'title1',
     like: false,
   },
   {
-    id: '2',
+    id: 'a9a29e30-292f-11ea-b9e5-bfff89ce3ff8',
     title: 'title2',
     like: false,
   },
