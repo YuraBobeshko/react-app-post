@@ -10,8 +10,6 @@ const {
   updatePost,
 } = require('./posts')
 
-console.log('server')
-
 app.use( (req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', 'content-type')
@@ -21,7 +19,6 @@ app.use( (req, res, next) => {
 
 app.get('/api/posts', (req, res) => {
   res.json(getPosts());
-  console.log(req)
 });
 
 app.post('/api/posts', bodyParser.json(), (req, res) => {  
