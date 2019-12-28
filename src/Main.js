@@ -30,7 +30,6 @@ function Main() {
     refreshPost();
   };
 
-  console.log(listPost)
   if(!listPost.length) return <h1>loading...</h1>
 
   return (
