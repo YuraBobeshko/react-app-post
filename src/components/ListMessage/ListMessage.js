@@ -9,7 +9,10 @@ export const ListMessage = (props) => {
     isLoading,
   } = props;
   useEffect( async () => {
-    refreshMessage()
+    refreshMessage();
+    setInterval(() => {
+      refreshMessage();
+    }, 1000);
   }, [])
 
   const refreshMessage = async () => {

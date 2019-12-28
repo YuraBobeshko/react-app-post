@@ -1,12 +1,12 @@
 .container {
   display: flex;
   justify-content: baseline;
-  width: 560px;
+  max-width: 560px;
 }
 
 .title {
   margin: auto;
-  width: 470px;
+  max-width: 470px;
   height: auto;
   word-wrap: break-word;
 }
