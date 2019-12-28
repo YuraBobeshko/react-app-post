@@ -37,7 +37,7 @@ function Main() {
     <div className="Main">
       <h1>Post</h1>
         <input 
-          onChange={event => event.key === "Enter" ? addPost(event.target.value) : ''}
+          onKeyPress={event => event.key === "Enter" ? addPost(event.target.value) : ''} 
           onBlur={event => addPost(event.target.value)} 
         />
       {listPost.map(item => {
