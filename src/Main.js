@@ -36,7 +36,10 @@ function Main() {
   return (
     <div className="Main">
       <h1>Post</h1>
-        <input onBlur={event => addPost(event.target.value)} />
+        <input 
+          onChange={event => event.keyCode === 'enter' ? addPost(event.target.value) : ''}
+          onBlur={event => addPost(event.target.value)} 
+        />
       {listPost.map(item => {
         return (
           <div key={item.id}>
