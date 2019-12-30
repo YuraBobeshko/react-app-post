@@ -85,7 +85,7 @@ console.log(imgUser)
             setToggle('login')
           }}
         >
-          register
+          registration
         </button>
       </form>
     );
@@ -96,7 +96,7 @@ console.log(imgUser)
       <>
         <button onClick={() => setToggle('login')}>login</button>
         or
-        <button onClick={() => setToggle('register')}>register</button>
+        <button onClick={() => setToggle('register')}>registration</button>
       </>
     )
   }
