@@ -10,6 +10,14 @@ const {
   updateMessage,
 } = require('./Message')
 
+const {
+  getUsers,
+  addUsers,
+  getCurrentUsers,
+  removeUsers,
+  updateUsers,
+} = require('./Users')
+
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', 'content-type')
@@ -17,12 +25,39 @@ app.use((req, res, next) => {
   next();
 })
 
+//Users
+app.get('/api/Users', (req, res) => {
+  res.json(getUsers());
+});
+
+app.post('/api/User', bodyParser.json(), (req, res) => {
+  res.json(getCurrentUsers(req.body));
+});
+
+app.post('/api/Users', bodyParser.json(), (req, res) => {
+  addUsers(req.body);
+  res.json(getUsers());
+});
+
+app.delete('/api/Users/:UsersId', (req, res) => {
+  removeUsers(req.params.MessageId);
+
+  res.json({ status: 'success' });
+});
+
+app.patch('/api/Users/:UsersId', bodyParser.json(), (req, res) => {
+  updateUsers(req.params.MessageId, req.body.params);
+
+  res.json({ status: 'success' });
+});
+
+//Messages
 app.get('/api/Messages', (req, res) => {
   res.json(getMessages());
 });
 
 app.post('/api/messages', bodyParser.json(), (req, res) => {
-  addMessage(req.body.body);
+  addMessage(req.body);
   const newMessage = getMessages();
   res.json(addMessage[newMessage.length - 1]);
 });

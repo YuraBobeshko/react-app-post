@@ -8,7 +8,8 @@ const initialState = {
   listUser: null,
   listPost: null,
   listMessage: null,
-  isLoading: true,
+  currentUser: null,
+  login: false,
   error: null,
 };
 
@@ -44,27 +45,29 @@ function reducer(state = initialState, action) {
       };
     }
 
-    case ACTION_TYPES.START_LOADING: {
+    case ACTION_TYPES.SET_CURRENT_USER: {
+      const { payload } = action;
+      
       return {
         ...state,
-        isLoading: true,
+        error: null,
+        currentUser: {...payload[0]},
       };
     }
 
-    case ACTION_TYPES.STOP_LOADING: {
+    case ACTION_TYPES.SET_LOGIN: {
       return {
         ...state,
-        isLoading: false,
+        login: !state.login,
       };
     }
-
-    case ACTION_TYPES.SET_LOAD_IMGS_ERROR: {
+    
+    case ACTION_TYPES.SET_ERROR: {
       const { payload } = action;
 
       return {
         ...state,
         error: payload,
-        listImg: null,
       };
     }
   

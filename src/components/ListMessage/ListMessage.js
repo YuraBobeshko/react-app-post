@@ -5,10 +5,10 @@ import './ListMessage.scss'
 export const ListMessage = (props) => {
   const {
     listMessage,
-    loadMessages,
-    isLoading,
+    loadData,
   } = props;
-  useEffect( async () => {
+
+  useEffect(async () => {
     refreshMessage();
     setInterval(() => {
       refreshMessage();
@@ -16,7 +16,7 @@ export const ListMessage = (props) => {
   }, [])
 
   const refreshMessage = async () => {
-    loadMessages()
+    loadData('Message')
   };
 
   const chengMessage = (id, params) => {
@@ -29,7 +29,7 @@ export const ListMessage = (props) => {
     refreshMessage();
   }
 
-  if (isLoading && !listMessage){ 
+  if (!listMessage) {
     return <h1>loading...</h1>
   }
 
@@ -40,7 +40,7 @@ export const ListMessage = (props) => {
           <div className='container' key={item.id}>
             <button onClick={() => deleteMessage(item.id)}>X</button>
             <span className='title'>
-              {item.body}
+              {`${item.user}: ${item.body}`}
             </span>
             <span
               className={`like ${item.like ? "active" : ""}`}

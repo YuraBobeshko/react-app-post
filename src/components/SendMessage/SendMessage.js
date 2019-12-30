@@ -5,21 +5,26 @@ import './SendMessage.scss'
 export const SendMessage = (props) => {
   const [value, setValue] = useState('')
 
-  const  {
-    loadMessages,
+  const {
+    loadData,
+    currentUser,
   } = props;
 
   const refreshMessage = async () => {
-    loadMessages()
+    loadData('Message')
   };
 
-  const getData = data => {
+  const sendMessage = (data, user) => {
     if (data.trim()) {
-      addMessage(data);
+      addMessage(data, user);
       refreshMessage();
     }
-    setValue('')
   }
+
+  const getData = data =>{
+    sendMessage(data, currentUser ? currentUser.name : 'anon')
+    setValue('')
+}
 
   return (
     <div className='container'>

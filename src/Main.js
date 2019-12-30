@@ -1,17 +1,27 @@
 import React from 'react';
-import './Main.scss';
-import { SendMessage } from './components/SendMessage/index';
-import { ListMessage } from './components/ListMessage/index';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import './Main.scss';
+
+import { SendMessage } from './components/SendMessage/index';
+import { ListMessage } from './components/ListMessage/index';
+import { Users } from './components/Users/index';
+import { ListPost } from './components/ListPost/index';
 
 function Main() {
   return (
     <div className="Main">
-      <h1>Message</h1>
       <Provider store={store}>
-        <ListMessage />
-        <SendMessage />
+        <div className='chat'>
+          <h1>Messages</h1>
+          <ListMessage />
+          <SendMessage />
+        </div>
+        <div>
+          <h1>Profile</h1>
+          <Users />
+          {/* <ListPost /> */}
+        </div>
       </Provider>
     </div>
   );

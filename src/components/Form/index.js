@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { ListMessage } from './ListMessage';
-import { loadData } from '../../store/actions';
+import { Form } from './Form';
+import { loadData, loginCurrentUser, setCurrentUser } from '../../store/actions';
 
 function mapState2Props(state) {
   return {
@@ -15,11 +15,13 @@ function mapState2Props(state) {
 
 const mapDispatch2Props = {
   loadData,
+  loginCurrentUser,
+  setCurrentUser,
 };
 
 const Enhanced = connect(
   mapState2Props,
   mapDispatch2Props,
-)(ListMessage);
+)(Form);
 
-export { Enhanced as ListMessage };
+export { Enhanced as Form };
