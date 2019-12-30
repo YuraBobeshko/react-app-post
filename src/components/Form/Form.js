@@ -7,6 +7,7 @@ export const Form = (props) => {
   const [newUserName, setnewUserName] = useState(currentUser ? currentUser.name : '');
   const [newUserPassword, setnewUserPassword] = useState(currentUser ? currentUser.password : '');
   const [newUserEmail, setnewUserEmail] = useState('');
+  const [imgUser, setImgUser] = useState('')
   const [toggle, setToggle] = useState(false)
 
   const {
@@ -15,6 +16,18 @@ export const Form = (props) => {
     setCurrentUser
   } = props;
 
+  const handleImage = event => {
+    event.preventDefault();
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      setImgUser(reader.result);
+    }
+
+  reader.readAsDataURL(file)
+  }
   if(toggle === 'login') {
     return (
       <form>
@@ -36,7 +49,7 @@ export const Form = (props) => {
       </form>
     );
   }
-
+console.log(imgUser)
   if(toggle === 'register'){
     return (
       <form>
@@ -58,6 +71,7 @@ export const Form = (props) => {
           placeholder={"email"}
           type={"text"}
         />
+        <input type="file" name="ing" onChange={event => handleImage(event)} ></input>
         <button
           onClick={event => {
             event.preventDefault();
@@ -65,8 +79,9 @@ export const Form = (props) => {
               newUserName,
               newUserPassword,
               newUserEmail,
-              setCurrentUser(newUserName, newUserPassword)
+              imgUser,
             );
+            setCurrentUser(newUserName, newUserPassword)
             setToggle('login')
           }}
         >

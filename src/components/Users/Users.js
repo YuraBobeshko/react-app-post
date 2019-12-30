@@ -32,6 +32,9 @@ export const Users = (props) => {
       <div>
         <button onClick={() => {setCurrentUser({}); setLogin();}}>go back</button>
         <h2>{currentUser.name}</h2>
+        <p>{currentUser.email}</p>
+        <p>{currentUser.img}</p>
+        <img src={currentUser.img} />
       </div>
     )
   }
