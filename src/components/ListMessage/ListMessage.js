@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { updateMessage, removeMessage } from '../../server/messengerApi';
 import './ListMessage.scss'
 
@@ -8,16 +8,18 @@ export const ListMessage = (props) => {
     loadData,
   } = props;
 
-  useEffect(async () => {
-    refreshMessage();
-    setInterval(() => {
-      refreshMessage();
-    }, 1000);
-  }, [])
+  const memoizedListMessage = useMemo(() => listMessage, [listMessage]);
 
   const refreshMessage = async () => {
     loadData('Message')
   };
+
+  useEffect(() => {
+    loadData('Message');
+    setInterval(() => {
+      refreshMessage();
+    }, 1000);
+  }, [loadData])
 
   const chengMessage = (id, params) => {
     updateMessage(id, params);
@@ -34,8 +36,8 @@ export const ListMessage = (props) => {
   }
 
   return (
-    <div>
-      {listMessage.map(item => {
+    <div className='list-messages'>
+      {memoizedListMessage.map(item => {
         return (
           <div className='container' key={item.id}>
             <button onClick={() => deleteMessage(item.id)}>X</button>
@@ -50,6 +52,5 @@ export const ListMessage = (props) => {
         );
       })}
     </div>
-  );
-
+  )
 }

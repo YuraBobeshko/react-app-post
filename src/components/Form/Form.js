@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input } from '../Input/Input';
 import { addUser } from '../../server/UsersApi'
 // import { authorization } from '../authorization/authorization'
 
 export const Form = (props) => {
-  const [newUserName, setnewUserName] = useState(currentUser ? currentUser.name : '');
-  const [newUserPassword, setnewUserPassword] = useState(currentUser ? currentUser.password : '');
-  const [newUserEmail, setnewUserEmail] = useState('');
-  const [imgUser, setImgUser] = useState('')
-  const [toggle, setToggle] = useState(false)
-
   const {
     currentUser,
     loginCurrentUser,
     setCurrentUser
   } = props;
+
+  const [newUserName, setnewUserName] = useState(currentUser ? currentUser.name : '');
+  const [newUserPassword, setnewUserPassword] = useState(currentUser ? currentUser.password : '');
+  const [newUserEmail, setnewUserEmail] = useState('');
+  const [imgUser, setImgUser] = useState('')
+  const [toggle, setToggle] = useState(false)
 
   const handleImage = event => {
     event.preventDefault();
@@ -49,7 +49,7 @@ export const Form = (props) => {
       </form>
     );
   }
-console.log(imgUser)
+
   if(toggle === 'register'){
     return (
       <form>

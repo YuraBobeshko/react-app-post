@@ -32,6 +32,7 @@ app.get('/api/Users', (req, res) => {
 
 app.post('/api/User', bodyParser.json(), (req, res) => {
   res.json(getCurrentUsers(req.body));
+  console.log(getUsers())
 });
 
 app.post('/api/Users', bodyParser.json(), (req, res) => {

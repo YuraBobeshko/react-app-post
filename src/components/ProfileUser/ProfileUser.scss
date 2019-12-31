@@ -1,0 +1,33 @@
+.card-frofile {
+  display: flex;
+  height: 150px;
+  width: 400px;
+  position: relative;
+  font-weight: bold;
+  font-size: 18px;
+
+  &__bc {
+    z-index: -1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 75px;
+    width: 100%;
+  }
+
+  &__img {
+    margin: 20px 10px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin: 50px 10px 0 0;
+  }
+
+  &__posts {
+    margin: 50px 10px;
+  }
+}

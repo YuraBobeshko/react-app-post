@@ -1,7 +1,11 @@
+.list-messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 .container {
   display: flex;
   justify-content: baseline;
-  max-width: 560px;
 }
 
 .title {
