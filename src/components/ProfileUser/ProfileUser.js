@@ -20,12 +20,11 @@ export const ProfileUser = props => {
     }
     return "rgb(" + g() + "," + g() + "," + g() +")";
 };
-
   const anonImg = './images/anonImg.jpg'
   const {
     name,
     img,
-    posts
+    posts,
   } = props.user.user;
   return (
     <div className='card-frofile'>

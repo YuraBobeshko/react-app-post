@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Form } from '../Form/index'
 import { ProfileUser } from '../ProfileUser/ProfileUser'
 
@@ -9,19 +9,20 @@ export const Users = (props) => {
     login,
     currentUser,
     setCurrentUser,
-    setLogin,
+    setLogin
   } = props;
 
   const [showedUser, setShowedUser] = useState(false)
+  const memoizedListUser = useMemo(() => listUser, [listUser]);
 
-  useEffect( () => {
+  useEffect(() => {
     loadData('Users');
-    setTimeout(() => {
-      loadData('Users');
+    setInterval(() => {
+      loadData('Users')
     }, 1000);
   }, [loadData])
-
-  if (!listUser){ 
+  
+  if (!memoizedListUser){ 
     return <h1>loading...</h1>
   }
 
@@ -32,7 +33,7 @@ export const Users = (props) => {
       </div>
     )
   }
-
+  
   if (currentUser.name !== undefined){ 
     return (
       <div>
@@ -46,10 +47,20 @@ export const Users = (props) => {
         </button>
         <CachedProfileUser user={currentUser} />
         <select onChange={event => setShowedUser(event.target.value)}>
-          <option value="" hidden={true}>select user</option>
-          {listUser.map(user => <option key={user.id} value={user.id} >{user.name}</option>)}
+          <option value="" hidden={true}>
+            select user
+          </option>
+          {memoizedListUser.map(user => (
+            <option key={user.id} value={user.id}>
+              {user.name}
+            </option>
+          ))}
         </select>
-        {showedUser ? <CachedProfileUser user={listUser.find(user => user.id === showedUser)} /> : null}
+        {showedUser ? (
+          <CachedProfileUser
+            user={memoizedListUser.find(user => user.id === showedUser)}
+          />
+        ) : null}
       </div>
     );
   }
@@ -58,7 +69,7 @@ export const Users = (props) => {
     <div>
       <h3>password or username is not correct</h3>
     </div>
-  )
+  );
 }
 
 const profileUser = user =>{

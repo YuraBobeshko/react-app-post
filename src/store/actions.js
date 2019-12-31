@@ -51,6 +51,7 @@ export const loginCurrentUser = (name, password) => dispatch => {
   })
   .then(res => res.json())
   .then(data => {dispatch(setCurrentUser(data)); dispatch(setLogin());})
+  .then(() => loadData(USERS_URL))
   .catch(error => dispatch(setError(error.message)))
 }
 

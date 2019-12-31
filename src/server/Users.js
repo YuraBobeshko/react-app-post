@@ -21,6 +21,7 @@ let listUsers = [
 ]
 
 const getUsers = () => {
+  console.log(1, listUsers);
   return listUsers;
 }
 
@@ -32,7 +33,8 @@ const addUsers = ({ name, email, password, img }) => {
     password: password,
     img: img,
     posts: [],
-  }]
+  }];
+  console.log(2, { name, email, password, img })
   return listUsers.length;
 }
 
@@ -42,6 +44,7 @@ const getCurrentUsers = ({name, password}) => {
   );
   return currentUser
 }
+
 const removeUsers = (UsersId) => {
   listUsers = listUsers.filter(user => user.id !== UsersId)
 }
