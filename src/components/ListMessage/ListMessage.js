@@ -1,49 +1,44 @@
-import React, { useEffect, useMemo } from 'react'
-import { updateMessage, removeMessage } from '../../server/messengerApi';
-import './ListMessage.scss'
+import React, { useEffect, useMemo } from "react";
+import { updateMessage, removeMessage } from "../../server/messengerApi";
+import "./ListMessage.scss";
 
-export const ListMessage = (props) => {
-  const {
-    listMessage,
-    loadData,
-  } = props;
+export const ListMessage = props => {
+  const { listMessage, loadData } = props;
 
   const memoizedListMessage = useMemo(() => listMessage, [listMessage]);
 
   const refreshMessage = async () => {
-    loadData('Message')
+    loadData("Message");
   };
 
   useEffect(() => {
-    loadData('Message');
+    loadData("Message");
     setInterval(() => {
       refreshMessage();
     }, 1000);
-  }, [loadData])
+  }, [loadData]);
 
   const chengMessage = (id, params) => {
     updateMessage(id, params);
     refreshMessage();
-  }
+  };
 
   const deleteMessage = id => {
     removeMessage(id);
     refreshMessage();
-  }
+  };
 
   if (!listMessage) {
-    return <h1>loading...</h1>
+    return <h1>loading...</h1>;
   }
 
   return (
-    <div className='list-messages'>
+    <div className="list-messages">
       {memoizedListMessage.map(item => {
         return (
-          <div className='container' key={item.id}>
+          <div className="container" key={item.id}>
             <button onClick={() => deleteMessage(item.id)}>X</button>
-            <span className='title'>
-              {`${item.user}: ${item.body}`}
-            </span>
+            <span className="title">{`${item.user}: ${item.body}`}</span>
             <span
               className={`like ${item.like ? "active" : ""}`}
               onClick={() => chengMessage(item.id, { like: !item.like })}
@@ -52,5 +47,5 @@ export const ListMessage = (props) => {
         );
       })}
     </div>
-  )
-}
+  );
+};

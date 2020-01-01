@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo } from 'react'
-import { Form } from '../Form/index'
-import { ProfileUser } from '../ProfileUser/ProfileUser'
+import React, { useEffect, useState, useMemo } from "react";
+import { Form } from "../Form/index";
+import { ProfileUser } from "../ProfileUser/ProfileUser";
 
-export const Users = (props) => {
+export const Users = props => {
   const {
     listUser,
     loadData,
@@ -12,29 +12,38 @@ export const Users = (props) => {
     setLogin
   } = props;
 
-  const [showedUser, setShowedUser] = useState(false)
+  const [showedUser, setShowedUser] = useState(false);
+
   const memoizedListUser = useMemo(() => listUser, [listUser]);
 
   useEffect(() => {
-    loadData('Users');
+    loadData("Users");
     setInterval(() => {
-      loadData('Users')
+      loadData("Users");
     }, 1000);
-  }, [loadData])
-  
-  if (!memoizedListUser){ 
-    return <h1>loading...</h1>
+  }, [loadData]);
+
+  const memoizedShowedUser = useMemo(
+    () =>
+      memoizedListUser
+        ? memoizedListUser.find(user => user.id === showedUser)
+        : null,
+    [showedUser]
+  );
+
+  if (!memoizedListUser) {
+    return <h1>loading...</h1>;
   }
 
-  if(!login) {
+  if (!login) {
     return (
       <div>
         <Form />
       </div>
-    )
+    );
   }
-  
-  if (currentUser.name !== undefined){ 
+
+  if (currentUser.name !== undefined) {
     return (
       <div>
         <button
@@ -56,11 +65,7 @@ export const Users = (props) => {
             </option>
           ))}
         </select>
-        {showedUser ? (
-          <CachedProfileUser
-            user={memoizedListUser.find(user => user.id === showedUser)}
-          />
-        ) : null}
+        <CachedProfileUser1 user={memoizedShowedUser} />
       </div>
     );
   }
@@ -70,11 +75,14 @@ export const Users = (props) => {
       <h3>password or username is not correct</h3>
     </div>
   );
-}
+};
 
-const profileUser = user =>{
-  return(
-  <ProfileUser user={user} />
-  )
+const profileUser = user => {
+  return <ProfileUser user={user} />;
 };
 const CachedProfileUser = React.memo(profileUser);
+
+const profileUser1 = user => {
+  return <ProfileUser user={user} />;
+};
+const CachedProfileUser1 = React.memo(profileUser1);

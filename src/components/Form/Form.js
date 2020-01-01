@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { Input } from '../Input/Input';
-import { addUser } from '../../server/UsersApi'
+import React, { useState } from "react";
+import { Input } from "../Input/Input";
+import { addUser } from "../../server/UsersApi";
 // import { authorization } from '../authorization/authorization'
 
-export const Form = (props) => {
-  const {
-    currentUser,
-    loginCurrentUser,
-    setCurrentUser
-  } = props;
+export const Form = props => {
+  const { currentUser, loginCurrentUser, setCurrentUser } = props;
 
-  const [newUserName, setnewUserName] = useState(currentUser ? currentUser.name : '');
-  const [newUserPassword, setnewUserPassword] = useState(currentUser ? currentUser.password : '');
-  const [newUserEmail, setnewUserEmail] = useState('');
-  const [imgUser, setImgUser] = useState('')
-  const [toggle, setToggle] = useState(false)
+  const [newUserName, setnewUserName] = useState(
+    currentUser ? currentUser.name : ""
+  );
+  const [newUserPassword, setnewUserPassword] = useState(
+    currentUser ? currentUser.password : ""
+  );
+  const [newUserEmail, setnewUserEmail] = useState("");
+  const [imgUser, setImgUser] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   const handleImage = event => {
     event.preventDefault();
@@ -24,11 +24,11 @@ export const Form = (props) => {
 
     reader.onloadend = () => {
       setImgUser(reader.result);
-    }
+    };
 
-  reader.readAsDataURL(file)
-  }
-  if(toggle === 'login') {
+    reader.readAsDataURL(file);
+  };
+  if (toggle === "login") {
     return (
       <form>
         <Input
@@ -44,13 +44,18 @@ export const Form = (props) => {
           type={"text"}
         />
         <button
-        onClick={event => {event.preventDefault(); loginCurrentUser(newUserName, newUserPassword);}}
-        >login</button>
+          onClick={event => {
+            event.preventDefault();
+            loginCurrentUser(newUserName, newUserPassword);
+          }}
+        >
+          login
+        </button>
       </form>
     );
   }
 
-  if(toggle === 'register'){
+  if (toggle === "register") {
     return (
       <form>
         <Input
@@ -71,18 +76,17 @@ export const Form = (props) => {
           placeholder={"email"}
           type={"text"}
         />
-        <input type="file" name="ing" onChange={event => handleImage(event)} ></input>
+        <input
+          type="file"
+          name="ing"
+          onChange={event => handleImage(event)}
+        ></input>
         <button
           onClick={event => {
             event.preventDefault();
-            addUser(
-              newUserName,
-              newUserPassword,
-              newUserEmail,
-              imgUser,
-            );
-            setCurrentUser(newUserName, newUserPassword)
-            setToggle('login')
+            addUser(newUserName, newUserPassword, newUserEmail, imgUser);
+            setCurrentUser(newUserName, newUserPassword);
+            setToggle("login");
           }}
         >
           registration
@@ -91,13 +95,13 @@ export const Form = (props) => {
     );
   }
 
-  if(!toggle){
+  if (!toggle) {
     return (
       <>
-        <button onClick={() => setToggle('login')}>login</button>
+        <button onClick={() => setToggle("login")}>login</button>
         or
-        <button onClick={() => setToggle('register')}>registration</button>
+        <button onClick={() => setToggle("register")}>registration</button>
       </>
-    )
+    );
   }
-}
+};
