@@ -7,6 +7,12 @@
   grid-template-columns: minmax(200px,  560px);
 }
 
+@media screen and (max-width: 999px) {
+  .Main {
+    grid-auto-flow: row;
+  }
+}
+
 // .chat {
 //   display: inline-block;
 // }
