@@ -60,9 +60,10 @@ export const Users = props => {
             select user
           </option>
           {memoizedListUser.map(user => (
+            user.id !== currentUser.id ?
             <option key={user.id} value={user.id}>
               {user.name}
-            </option>
+            </option> : null
           ))}
         </select>
         <CachedProfileUser1 user={memoizedShowedUser} />
