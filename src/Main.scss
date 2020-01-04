@@ -5,6 +5,7 @@
   align-items: stretch;
   grid-auto-flow: column;
   grid-template-columns: minmax(200px,  560px);
+  background-color: #e9e9e9;
 }
 
 @media screen and (max-width: 999px) {

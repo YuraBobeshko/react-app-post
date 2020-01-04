@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../Input/Input";
 import { addUser } from "../../server/UsersApi";
+import './Form.scss';
 // import { authorization } from '../authorization/authorization'
 
 export const Form = props => {
@@ -30,7 +31,7 @@ export const Form = props => {
   };
   if (toggle === "login") {
     return (
-      <form>
+      <form className='form'>
         <Input
           takeData={setnewUserName}
           name={"name"}
@@ -44,6 +45,7 @@ export const Form = props => {
           type={"text"}
         />
         <button
+          className='btn btn-dark'
           onClick={event => {
             event.preventDefault();
             loginCurrentUser(newUserName, newUserPassword);
@@ -82,6 +84,7 @@ export const Form = props => {
           onChange={event => handleImage(event)}
         ></input>
         <button
+          className='btn btn-dark'
           onClick={event => {
             event.preventDefault();
             addUser(newUserName, newUserPassword, newUserEmail, imgUser);
@@ -97,11 +100,10 @@ export const Form = props => {
 
   if (!toggle) {
     return (
-      <>
-        <button onClick={() => setToggle("login")}>login</button>
-        or
-        <button onClick={() => setToggle("register")}>registration</button>
-      </>
+      <div className='btn-group'>
+        <button className='btn btn-dark button' onClick={() => setToggle("login")}>login</button>
+        <button className='btn btn-dark button' onClick={() => setToggle("register")}>registration</button>
+      </div>
     );
   }
 };

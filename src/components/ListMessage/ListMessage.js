@@ -37,8 +37,9 @@ export const ListMessage = props => {
       {memoizedListMessage.map(item => {
         return (
           <div className="container" key={item.id}>
-            <button onClick={() => deleteMessage(item.id)}>X</button>
-            <span className="title">{`${item.user}: ${item.body}`}</span>
+            <button className='btn btn-outline-danger' onClick={() => deleteMessage(item.id)}>X</button>
+            <span className="name-user">{item.user}:</span>
+            <span className="title">{item.body}</span>
             <span
               className={`like ${item.like ? "active" : ""}`}
               onClick={() => chengMessage(item.id, { like: !item.like })}

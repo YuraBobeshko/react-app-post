@@ -32,7 +32,7 @@ export const SendMessage = props => {
         onBlur={() => getData(value)}
         className="form-control form-control-lgnpm"
       />
-      <button onClick={() => getData(value)}>SEND</button>
+      <button className='btn btn-dark' onClick={() => getData(value)}>SEND</button>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Input.scss';
 
 export const Input = props => {
   const [valueItput, setvalueItput] = useState("");
@@ -7,6 +8,7 @@ export const Input = props => {
 
   return (
     <input
+      className='form-control'
       type={type}
       value={valueItput}
       onChange={event => setvalueItput(event.target.value)}
