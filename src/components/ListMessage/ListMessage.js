@@ -14,7 +14,7 @@ export const ListMessage = props => {
   useEffect(() => {
     loadData("Message");
     setInterval(() => {
-      refreshMessage();
+      loadData("Message");
     }, 1000);
   }, [loadData]);
 

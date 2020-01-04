@@ -28,7 +28,7 @@ export const Users = props => {
       memoizedListUser
         ? memoizedListUser.find(user => user.id === showedUser)
         : null,
-    [showedUser]
+    [showedUser, memoizedListUser]
   );
 
   if (!memoizedListUser) {
